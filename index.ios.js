@@ -20,14 +20,21 @@ class AwesomeProject extends Component {
     super();
     this.state = {
       name: 'vanik',
+      inputValue: 'hey!',
     };
     this.onPress = this.onPress.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onPress() {
     let myString = 'ay';
     [1, 2, 'van'].forEach((itm) => myString += itm);
     this.setState({name: myString});
+  }
+
+  onChange(event) {
+    console.warn('event', event);
+    this.setState({inputValue: event});
   }
 
   render() {
@@ -40,7 +47,7 @@ class AwesomeProject extends Component {
           To get sdtarted, edit index.ios.js
         </Text>
         <View style={{backgroundColor: 'red'}}>
-          <TextInput style={{ height: 60 }} value={'nil'} placeholder="type JOEEEEE here" />
+          <TextInput style={{ height: 60 }} onChange={this.onChange} value={this.state.inputValue} onChangeplaceholder="type JOEEEEE here" />
         </View>
         <TouchableHighlight onPress={this.onPress}>
           <Text>Click Me {this.state.name}</Text>
